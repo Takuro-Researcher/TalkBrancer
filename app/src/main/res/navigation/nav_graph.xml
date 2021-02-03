@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/TitleFragment">
+
+    <fragment
+        android:id="@+id/TitleFragment"
+        android:name="com.example.talkbrancer.TitleFragment"
+        tools:layout="@layout/fragment_title">
+
+        <action
+            android:id="@+id/action_TitleFragment_to_HowToFragment"
+            app:destination="@id/HowToFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HowToFragment"
+        android:name="com.example.talkbrancer.HowToFragment"
+        tools:layout="@layout/fragment_hot_to">
+        <action
+            android:id="@+id/action_HowToFragment_to_TitleFragment"
+            app:destination="@id/TitleFragment" />
+    </fragment>
+</navigation>
