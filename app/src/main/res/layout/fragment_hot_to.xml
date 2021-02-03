@@ -5,15 +5,134 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HowToFragment">
+    <ScrollView
+        android:id="@+id/how_to_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/shape">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textview_second"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rule_text"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="13sp"
+                android:layout_margin="20dp"
+                android:text="@string/rule"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn1_title"
+                app:layout_constraintTop_toBottomOf="@+id/rule_text"
+                android:textSize="17sp"
+                android:layout_margin="20dp"
+                android:text="1."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn1"
+                app:layout_constraintTop_toBottomOf="@+id/turn1_title"
+                android:textSize="13sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/turn1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn2_title"
+                app:layout_constraintTop_toBottomOf="@+id/turn1"
+                android:textSize="17sp"
+                android:layout_margin="20dp"
+                android:text="2."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn2"
+                app:layout_constraintTop_toBottomOf="@+id/turn2_title"
+                android:textSize="13sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/turn2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn2ex"
+                app:layout_constraintTop_toBottomOf="@+id/turn2"
+                android:textSize="13sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/turn2ex"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn3_title"
+                app:layout_constraintTop_toBottomOf="@+id/turn2ex"
+                android:textSize="17sp"
+                android:layout_margin="20dp"
+                android:text="3."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn3"
+                app:layout_constraintTop_toBottomOf="@+id/turn3_title"
+                android:textSize="13sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/turn3"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn3ex"
+                app:layout_constraintTop_toBottomOf="@+id/turn3"
+                android:textSize="13sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/turn3ex"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn3attention"
+                app:layout_constraintTop_toBottomOf="@+id/turn3ex"
+                android:textSize="13sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/turn3attention"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn4_title"
+                app:layout_constraintTop_toBottomOf="@+id/turn3attention"
+                android:textSize="17sp"
+                android:layout_margin="20dp"
+                android:text="4."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/turn4"
+                app:layout_constraintTop_toBottomOf="@+id/turn4_title"
+                android:textSize="13sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/turn4"/>
+            <TextView
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/attention"
+                app:layout_constraintTop_toBottomOf="@+id/turn4"
+                android:textSize="13sp"
+                android:text="@string/attention"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/button_second"
@@ -23,5 +142,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintTop_toBottomOf="@id/how_to_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

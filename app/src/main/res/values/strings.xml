@@ -8,7 +8,30 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="rule">このアプリは飲み会などでいよいよ話すことがなくなってきたときに、無理やりにでも会話を繋げることに重宝するアプリです\n</string>
+    <string name="turn1">最初に人数を設定します。今回はYugiさんとJohnoさんとHondaさんの3人でアプリを使うとします</string>
+    <string name="turn2">順番に<font color="#ff6666">「名前」</font>　<font color="#66ff66">「語りたい or 語り合いたい話」</font>　<font color="#6666ff">「誰かに聞きたい話や話題」</font>をざっくり入力します</string>
+    <string name="turn2ex">例\n
+        <font color="#ff6666">Yugi</font>
+        <font color="#66ff66">一番エロいと思うジャンプのキャラ（語り合いたい）</font>
+        <font color="#6666ff">好きな異性のタイプ \n</font>
+        <font color="#ff6666">Johno</font>
+        <font color="#66ff66">就活の愚痴話（語り合いたい）</font>
+        <font color="#6666ff">就活の苦労話\n</font>
+        <font color="#ff6666">Honda</font>
+        <font color="#66ff66">カニカマの魅力（語りたい）</font>　
+        <font color="#6666ff">今年一番面白かった出来事</font>
+    </string>
+    <string name="turn3">全員2番を提出しおわったら、ランダムで\nA．みんなに語りたい or 語り合いたい話題を提出者が話す時間\nB. 誰か一人が誰かに答えてほしい話題が誰かが答える時間\nのどちらかが出てきます</string>
+    <string name="turn3ex">例として、「就活の苦労話ーHonda」と出たとします。\nこれは就活の苦労話をHondaさんが話すというターンです。上のBパターンに相当します</string>
+    <string name="turn3attention"><font color="#ff4444">※この時、Hondaさんは就活の苦労話について話したくない場合、「パス」することが出来ます。</font></string>
+    <string name="turn4">3番でパスするか話し終えたら、もう一度3番に戻り、AかBを満たすターンを行います。\nこれを気が済むまでくり返して話に花を咲かせてください</string>
+    <string name="attention"><font color="#ff4444">※注</font>\n
+        1. 会話をすることの強要はハラスメント行為です。話す方の「断る権利」を最優先してください\n
+        2. 話してほしい内容をセットする場合、同時に周りの人が「話すことのできる」内容であるかどうかよく考えてください\n
+        3. このアプリは誰がセットしたトピックか意図的にわからないようにしています。特定するような行為はトラブルの原因になる可能性もありますので慎重にお願いします。
+    </string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
 </resources>
