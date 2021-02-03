@@ -3,26 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/TitleFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.talkbrancer.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/TitleFragment"
+        android:name="com.example.talkbrancer.TitleFragment"
+        tools:layout="@layout/fragment_title">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_TitleFragment_to_HowToFragment"
+            app:destination="@id/HowToFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.talkbrancer.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/HowToFragment"
+        android:name="com.example.talkbrancer.HowToFragment"
+        tools:layout="@layout/fragment_hot_to">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_HowToFragment_to_TitleFragment"
+            app:destination="@id/TitleFragment" />
     </fragment>
 </navigation>
