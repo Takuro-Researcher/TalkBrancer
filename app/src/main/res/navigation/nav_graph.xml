@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/PeopleSettingFragment"
-        android:name="com.example.talkbrancer.PeopleSettingFragment"
+        android:name="com.example.talkbrancer.setting.PeopleSettingFragment"
         tools:layout="@layout/fragment_people_setting">
         <action
             android:id="@+id/action_PeopleSettingFragment_to_TitleFragment"
