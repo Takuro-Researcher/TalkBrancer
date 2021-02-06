@@ -31,7 +31,8 @@
         2. 話してほしい内容をセットする場合、同時に周りの人が「話すことのできる」内容であるかどうかよく考えてください\n
         3. このアプリは誰がセットしたトピックか意図的にわからないようにしています。特定するような行為はトラブルの原因になる可能性もありますので慎重にお願いします。
     </string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
