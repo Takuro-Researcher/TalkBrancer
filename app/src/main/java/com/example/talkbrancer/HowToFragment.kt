@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_how_to.*
+import kotlinx.android.synthetic.main.fragment_title.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -18,13 +20,12 @@ class HowToFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hot_to, container, false)
+        return inflater.inflate(R.layout.fragment_how_to, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
+        back_howto_to_title_button.setOnClickListener {
             findNavController().navigate(R.id.action_HowToFragment_to_TitleFragment)
         }
     }

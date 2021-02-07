@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_title.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -24,8 +25,11 @@ class TitleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.hot_to_button).setOnClickListener {
+        how_to_button.setOnClickListener {
             findNavController().navigate(R.id.action_TitleFragment_to_HowToFragment)
+        }
+        play_button.setOnClickListener {
+            findNavController().navigate(R.id.action_TitleFragment_to_PeopleSettingFragment)
         }
     }
 }

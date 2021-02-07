@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="30dp"/>
     <Button
-        android:id="@+id/hot_to_button"
+        android:id="@+id/how_to_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="アプリの説明"

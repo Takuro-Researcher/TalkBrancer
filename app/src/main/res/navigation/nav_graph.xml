@@ -9,17 +9,28 @@
         android:id="@+id/TitleFragment"
         android:name="com.example.talkbrancer.TitleFragment"
         tools:layout="@layout/fragment_title">
-
         <action
             android:id="@+id/action_TitleFragment_to_HowToFragment"
             app:destination="@id/HowToFragment" />
+        <action
+            android:id="@+id/action_TitleFragment_to_PeopleSettingFragment"
+            app:destination="@id/PeopleSettingFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/HowToFragment"
         android:name="com.example.talkbrancer.HowToFragment"
-        tools:layout="@layout/fragment_hot_to">
+        tools:layout="@layout/fragment_how_to">
         <action
             android:id="@+id/action_HowToFragment_to_TitleFragment"
+            app:destination="@id/TitleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PeopleSettingFragment"
+        android:name="com.example.talkbrancer.setting.PeopleSettingFragment"
+        tools:layout="@layout/fragment_people_setting">
+        <action
+            android:id="@+id/action_PeopleSettingFragment_to_TitleFragment"
             app:destination="@id/TitleFragment" />
     </fragment>
 </navigation>
