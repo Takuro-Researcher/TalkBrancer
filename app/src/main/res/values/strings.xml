@@ -8,6 +8,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="people_num">人</string>
     <string name="rule">このアプリは飲み会などでいよいよ話すことがなくなってきたときに、無理やりにでも会話を繋げることに重宝するアプリです\n</string>
     <string name="turn1">最初に人数を設定します。今回はYugiさんとJohnoさんとHondaさんの3人でアプリを使うとします</string>
     <string name="turn2">順番に<font color="#ff6666">「名前」</font>　<font color="#66ff66">「語りたい or 語り合いたい話」</font>　<font color="#6666ff">「誰かに聞きたい話や話題」</font>をざっくり入力します</string>

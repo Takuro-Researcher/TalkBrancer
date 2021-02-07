@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/join_text"
                     android:textSize="35sp"
-                    android:text="@{data.peopleCount.toString()}"
+                    android:text="@{data.peopleCount.toString() + @string/people_num }"
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>

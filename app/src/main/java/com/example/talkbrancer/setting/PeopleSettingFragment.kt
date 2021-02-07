@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.fragment_people_setting.*
 class PeopleSettingFragment : Fragment() {
     private val viewModel: SettingViewModel by activityViewModels()
     private lateinit var binding: FragmentPeopleSettingBinding
-    private var items: List<UserItem> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +53,10 @@ class PeopleSettingFragment : Fragment() {
         back_people_setting_to_title_button.setOnClickListener {
             findNavController().navigate(R.id.action_PeopleSettingFragment_to_TitleFragment)
         }
+        go_user_button.setOnClickListener {
+            //TODO 画面遷移
+        }
+
     }
 
 }
@@ -61,6 +64,7 @@ class PeopleSettingFragment : Fragment() {
 data class UserItem(private val item: User):BindableItem<UserItemBinding>(item.hashCode().toLong()){
     override fun getLayout() = R.layout.user_item
     override fun bind(viewBinding: UserItemBinding, position: Int) {
-        viewBinding.data = item
+        viewBinding.item = item
+        viewBinding.postion = position
     }
 }

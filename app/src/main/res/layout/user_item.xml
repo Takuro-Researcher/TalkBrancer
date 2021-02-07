@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="data" type="com.example.talkbrancer.setting.User"/>
+        <variable name="item" type="com.example.talkbrancer.setting.User"/>
+        <variable name="postion" type="Integer"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,23 +14,13 @@
         <EditText
             android:id="@+id/user_name_text"
             android:layout_width="wrap_content"
-            android:inputType="textMultiLine"
-            android:text="@{data.name}"
+            android:text="@={item.name}"
+            android:inputType="text"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:hint="@string/user_edit_hint"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp" />
-        <ImageView
-            android:id="@+id/delete_img"
-            android:layout_width="wrap_content"
-            android:src="@drawable/ic_x"
-            android:layout_margin="30dp"
-            app:layout_constraintStart_toEndOf="@id/user_name_text"
-            app:layout_constraintTop_toTopOf="@id/user_name_text"
-            app:layout_constraintBottom_toBottomOf="@id/user_name_text"
-            android:layout_height="wrap_content"/>
-
-
+             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

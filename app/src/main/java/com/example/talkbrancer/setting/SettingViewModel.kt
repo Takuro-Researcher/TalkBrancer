@@ -7,22 +7,22 @@ import androidx.lifecycle.MutableLiveData
 import java.util.*
 
 data class User(
-    val name: MutableLiveData<String> = MutableLiveData("")
-) {
-
-}
+    val id: Long,
+    var name: MutableLiveData<String> = MutableLiveData("")
+) {}
 
 class SettingViewModel(application: Application): AndroidViewModel(application) {
     var peopleCount: MutableLiveData<Int> = MutableLiveData(0)
     private var _users:MutableLiveData<MutableList<User>> = MutableLiveData()
     private val usersRaw = LinkedList<User>()
     val users: LiveData<MutableList<User>> = _users
+    var id: Long = 0L
     init {
         addUsers()
     }
-
     fun addUsers(){
-        usersRaw.add(User(MutableLiveData("")))
+        id += 1
+        usersRaw.add(User(id,MutableLiveData("")))
         _users.value = usersRaw
         peopleCount.value = peopleCount.value?.plus(1)
     }
@@ -30,8 +30,5 @@ class SettingViewModel(application: Application): AndroidViewModel(application) 
         usersRaw.removeLast()
         _users.value =  usersRaw
         peopleCount.value = peopleCount.value?.minus(1)
-    }
-    fun deletePostion(){
-
     }
 }
