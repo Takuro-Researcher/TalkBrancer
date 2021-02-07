@@ -24,6 +24,7 @@
             android:layout_marginBottom="100dp"
             android:background="@drawable/shape">
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/people_num_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
@@ -62,7 +63,16 @@
                     app:layout_constraintTop_toTopOf="@id/people_text"
                     app:layout_constraintBottom_toBottomOf="@id/people_text"
                     app:layout_constraintEnd_toEndOf="parent" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toBottomOf="@+id/people_text"
+                    tools:listitem="@layout/user_item"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </ScrollView>
         <Button
             android:id="@+id/back_people_setting_to_title_button"

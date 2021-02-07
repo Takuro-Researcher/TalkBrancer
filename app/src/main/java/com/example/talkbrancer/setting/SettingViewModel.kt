@@ -8,6 +8,7 @@ class SettingViewModel(application: Application): AndroidViewModel(application) 
     var peopleCount: MutableLiveData<Int> = MutableLiveData()
 
     init {
-        peopleCount.value = 2
+        peopleCount.value = 3
     }
+
 }
