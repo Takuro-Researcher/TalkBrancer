@@ -32,5 +32,16 @@
         <action
             android:id="@+id/action_PeopleSettingFragment_to_TitleFragment"
             app:destination="@id/TitleFragment" />
+        <action
+            android:id="@+id/action_PeopleSettingFragment_to_TalkThemeSettingFragment"
+            app:destination="@id/TalkThemeSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/TalkThemeSettingFragment"
+        android:name="com.example.talkbrancer.setting.TalkThemeSettingFragment"
+        tools:layout="@layout/fragment_talk_theme_setting">
+        <action
+            android:id="@+id/action_TalkThemeSettingFragment_to_PeopleSettingFragment"
+            app:destination="@id/PeopleSettingFragment" />
     </fragment>
 </navigation>

@@ -45,7 +45,6 @@ class PeopleSettingFragment : Fragment() {
         viewModel.users.observe(viewLifecycleOwner, Observer {
             groupAdapter.update(it.toList().map { UserItem(it) })
         })
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,9 +53,8 @@ class PeopleSettingFragment : Fragment() {
             findNavController().navigate(R.id.action_PeopleSettingFragment_to_TitleFragment)
         }
         go_user_button.setOnClickListener {
-            //TODO 画面遷移
+            findNavController().navigate(R.id.action_PeopleSettingFragment_to_TalkThemeSettingFragment)
         }
-
     }
 
 }
