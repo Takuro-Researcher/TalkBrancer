@@ -49,7 +49,10 @@ class TalkTurnFragment : Fragment() {
                     DialogInterface.OnClickListener { dialog, id ->
                         findNavController().navigate(R.id.action_TalkTurnFragment_to_PeopleSettingFragment)
                     })
-                setNegativeButton("NO")
+                setNegativeButton("NO",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        // User cancelled the dialog
+                    })
             }
             val dialog: AlertDialog? = builder?.create()
             dialog?.show()
