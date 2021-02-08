@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.talkbrancer.databinding.FragmentPeopleSettingBinding
 import com.example.talkbrancer.databinding.FragmentTalkThemeSettingBinding
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.databinding.ViewHolder
 
 class TalkThemeSettingFragment : Fragment() {
-    private val viewModel: SettingViewModel by activityViewModels()
+    private val viewModelPeople: PeopleSettingViewModel by activityViewModels()
     private lateinit var binding: FragmentTalkThemeSettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +27,6 @@ class TalkThemeSettingFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.data = viewModel
+        binding.data = viewModelPeople
     }
 }

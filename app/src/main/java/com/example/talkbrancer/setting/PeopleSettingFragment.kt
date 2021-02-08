@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.talkbrancer.R
@@ -20,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_people_setting.*
 
 
 class PeopleSettingFragment : Fragment() {
-    private val viewModel: SettingViewModel by activityViewModels()
+    private val viewModelPeople: PeopleSettingViewModel by activityViewModels()
     private lateinit var binding: FragmentPeopleSettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +37,10 @@ class PeopleSettingFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.data = viewModel
+        binding.data = viewModelPeople
         val groupAdapter = GroupAdapter<ViewHolder<*>>()
         binding.recyclerView.adapter = groupAdapter
-        viewModel.users.observe(viewLifecycleOwner, Observer {
+        viewModelPeople.users.observe(viewLifecycleOwner, Observer {
             groupAdapter.update(it.toList().map { UserItem(it) })
         })
     }

@@ -11,7 +11,7 @@ data class User(
     var name: MutableLiveData<String> = MutableLiveData("")
 ) {}
 
-class SettingViewModel(application: Application): AndroidViewModel(application) {
+class PeopleSettingViewModel(application: Application): AndroidViewModel(application) {
     var peopleCount: MutableLiveData<Int> = MutableLiveData(0)
     private var _users:MutableLiveData<MutableList<User>> = MutableLiveData()
     private val usersRaw = LinkedList<User>()

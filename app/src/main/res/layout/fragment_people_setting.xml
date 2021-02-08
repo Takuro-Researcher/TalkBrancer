@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="data"
-            type="com.example.talkbrancer.setting.SettingViewModel" />
+            type="com.example.talkbrancer.setting.PeopleSettingViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
