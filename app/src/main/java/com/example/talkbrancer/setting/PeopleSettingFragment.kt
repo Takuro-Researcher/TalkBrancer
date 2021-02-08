@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.talkbrancer.R
 import com.example.talkbrancer.databinding.FragmentPeopleSettingBinding
 import com.example.talkbrancer.databinding.UserItemBinding
+import com.google.android.material.snackbar.Snackbar
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.databinding.BindableItem
 import com.xwray.groupie.databinding.ViewHolder
@@ -43,6 +44,7 @@ class PeopleSettingFragment : Fragment() {
         viewModelPeople.users.observe(viewLifecycleOwner, Observer {
             groupAdapter.update(it.toList().map { UserItem(it) })
         })
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +53,18 @@ class PeopleSettingFragment : Fragment() {
             findNavController().navigate(R.id.action_PeopleSettingFragment_to_TitleFragment)
         }
         go_user_button.setOnClickListener {
-            findNavController().navigate(R.id.action_PeopleSettingFragment_to_TalkThemeSettingFragment)
+            val result = viewModelPeople.isCanGoPage()
+            val canGo = result.first
+            val errorName = result.second
+            if (canGo) {
+                findNavController().navigate(R.id.action_PeopleSettingFragment_to_TalkThemeSettingFragment)
+            } else {
+                if (errorName == "CONTAIN_NULL") {
+                    Snackbar.make(view, "名前の入力されていない人がいます", Snackbar.LENGTH_SHORT).show()
+                } else if (errorName == "DUPLICATE_USER") {
+                    Snackbar.make(view, "名前は重複しないようにお願いします", Snackbar.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

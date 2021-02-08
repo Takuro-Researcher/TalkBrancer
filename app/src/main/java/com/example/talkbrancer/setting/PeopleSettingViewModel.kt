@@ -1,7 +1,5 @@
 package com.example.talkbrancer.setting
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,13 +21,27 @@ class PeopleSettingViewModel(): ViewModel() {
     }
     fun addUsers(){
         id += 1
-        usersRaw.add(User(id,MutableLiveData("")))
+        usersRaw.add(User(id, MutableLiveData("")))
         _users.value = usersRaw
         peopleCount.value = peopleCount.value?.plus(1)
     }
-    fun deleteLast(){
+
+    fun deleteLast() {
         usersRaw.removeLast()
-        _users.value =  usersRaw
+        _users.value = usersRaw
         peopleCount.value = peopleCount.value?.minus(1)
+    }
+
+    fun isCanGoPage(): Pair<Boolean, String> {
+        val nameList = usersRaw.map { it.name.value ?: "" }
+        // 空の文字列が含まれている
+        if (nameList.contains("")) {
+            return Pair(false, "CONTAIN_NULL")
+        }
+        // 重複した文字が存在する
+        if (nameList.distinct().size != nameList.size) {
+            return Pair(false, "DUPLICATE_USER")
+        }
+        return Pair(true, "")
     }
 }

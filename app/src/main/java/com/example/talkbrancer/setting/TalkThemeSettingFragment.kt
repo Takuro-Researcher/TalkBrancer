@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_talk_theme_setting.*
 class TalkThemeSettingFragment : Fragment() {
     private val viewModelPeople: PeopleSettingViewModel by activityViewModels()
     private val viewModelTalkTheme: TalkThemeSettingViewModel by viewModels { TalkThemeSettingViewModelFactory(users = viewModelPeople.users.value?.toList()) }
-
     private lateinit var binding: FragmentTalkThemeSettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +35,7 @@ class TalkThemeSettingFragment : Fragment() {
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         binding.data = viewModelTalkTheme
         viewModelTalkTheme.gameStartAction.observe(viewLifecycleOwner, Observer {
             if (it == true) {

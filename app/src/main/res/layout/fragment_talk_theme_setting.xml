@@ -68,6 +68,7 @@
                 android:checked="@={data.shareHereMode}"
                 app:layout_constraintTop_toBottomOf="@+id/share_talk_switch"
                 app:layout_constraintStart_toStartOf="@+id/share_talk_switch"/>
+
             <EditText
                 android:id="@+id/want_you_to_talk_edit"
                 android:layout_width="wrap_content"
@@ -78,6 +79,16 @@
                 app:layout_constraintStart_toStartOf="@+id/want_to_talk_edit"
                 android:hint="@string/want_you_to_talk_theme_hint"
                 android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/talk_form_attention_text"
+                android:layout_margin="40dp"
+                android:textColor="@color/colorSubAttention"
+                app:layout_constraintTop_toBottomOf="@id/want_you_to_talk_edit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     <Button
         android:id="@+id/next_user_button"
