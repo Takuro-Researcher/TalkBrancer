@@ -43,5 +43,13 @@
         <action
             android:id="@+id/action_TalkThemeSettingFragment_to_PeopleSettingFragment"
             app:destination="@id/PeopleSettingFragment" />
+        <action
+            android:id="@+id/action_TalkThemeSettingFragment_to_TalkTurnFragment"
+            app:destination="@id/TalkTurnFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/TalkTurnFragment"
+        android:name="com.example.talkbrancer.talk_turn.TalkTurnFragment"
+        tools:layout="@layout/fragment_talk_turn"></fragment>
+
 </navigation>

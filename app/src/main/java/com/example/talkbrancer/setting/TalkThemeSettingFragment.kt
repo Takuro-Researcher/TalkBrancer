@@ -7,9 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.talkbrancer.R
 import com.example.talkbrancer.databinding.FragmentTalkThemeSettingBinding
+import kotlinx.android.synthetic.main.fragment_talk_theme_setting.*
 
 class TalkThemeSettingFragment : Fragment() {
     private val viewModelPeople: PeopleSettingViewModel by activityViewModels()
@@ -33,6 +37,13 @@ class TalkThemeSettingFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.data = viewModelTalkTheme
+        viewModelTalkTheme.gameStartAction.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                next_user_button.setOnClickListener {
+                    findNavController().navigate(R.id.action_TalkThemeSettingFragment_to_TalkTurnFragment)
+                }
+            }
+        })
     }
 }
 

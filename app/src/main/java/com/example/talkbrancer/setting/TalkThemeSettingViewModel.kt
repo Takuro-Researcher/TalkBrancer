@@ -11,23 +11,32 @@ data class TalkTheme(
 
 class TalkThemeSettingViewModel(user: List<User>): ViewModel() {
     private var nowIndex: Int = 0
+    private val userRaw = user
+    private var usersSettingData: MutableList<TalkTheme> = mutableListOf()
     var userName: MutableLiveData<String> = MutableLiveData()
 
-    private var usersSettingData:MutableList<TalkTheme> = mutableListOf()
-
     // 誰かと話したい
-    var wantYouToTalk: MutableLiveData<String> = MutableLiveData()
-    // 誰かに話したい
-    var wantToTalk: MutableLiveData<String> = MutableLiveData()
-    //
-    var shareTalkMode:MutableLiveData<Boolean> = MutableLiveData(true)
-    var shareHereMode:MutableLiveData<Boolean> = MutableLiveData(true)
+    val wantYouToTalk: MutableLiveData<String> = MutableLiveData()
 
-    private val userRaw = user
-    init{
+    // 誰かに話したい
+    val wantToTalk: MutableLiveData<String> = MutableLiveData()
+
+    //　EditText
+    val shareTalkMode: MutableLiveData<Boolean> = MutableLiveData(true)
+    val shareHereMode: MutableLiveData<Boolean> = MutableLiveData(true)
+
+    // 全員の設定が終了した際Trueにする。
+    val gameStartAction: MutableLiveData<Boolean> = MutableLiveData(false)
+
+    init {
         userSetting()
     }
-    fun userSetting(){
+
+    fun userSetting() {
+        // 次のユーザーで最後の場合、実行するアクションを変える
+        if (nowIndex + 1 == userRaw.size) {
+            gameStartAction.postValue(true)
+        }
         userName.postValue(userRaw[nowIndex].name.value)
     }
     fun initTheme(){
