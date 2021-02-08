@@ -39,6 +39,7 @@
     <string name="want_to_talk_theme_hint">あなたが語りたいこと</string>
 
     <string name="want_you_to_talk_theme_hint">語ってほしいこと</string>
+    <string name="talk_form_attention_text">※いい話題が見つからなかった場合\n 空のままにしてください</string>
     <string name="something">だれかに</string>
     <string name="with_all">みんなと</string>
     <string name="to_all">みんなに</string>

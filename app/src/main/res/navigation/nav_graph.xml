@@ -50,6 +50,10 @@
     <fragment
         android:id="@+id/TalkTurnFragment"
         android:name="com.example.talkbrancer.talk_turn.TalkTurnFragment"
-        tools:layout="@layout/fragment_talk_turn"></fragment>
+        tools:layout="@layout/fragment_talk_turn">
+        <action
+            android:id="@+id/action_TalkTurnFragment_to_PeopleSettingFragment"
+            app:destination="@id/PeopleSettingFragment" />
+    </fragment>
 
 </navigation>
