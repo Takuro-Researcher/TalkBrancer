@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.example.talkbrancer.setting.PeopleSettingViewModel" />
+            type="com.example.talkbrancer.setting.TalkThemeSettingViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
                 android:id="@+id/talk_theme_user_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="森田森田森田森田森田　さん"
+                android:text="@{data.userName + @string/san}"
                 android:layout_margin="20dp"
                 android:textSize="18sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -44,6 +44,7 @@
                 android:textOff="@string/to_all"
                 android:textOn="@string/with_all"
                 android:layout_marginTop="40dp"
+                android:checked="@={data.shareTalkMode}"
                 app:layout_constraintTop_toBottomOf="@+id/talk_theme_recommend_text"
                 app:layout_constraintStart_toStartOf="@+id/talk_theme_recommend_text"/>
             <EditText
@@ -51,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:inputType="text"
                 android:layout_margin="20dp"
+                android:text="@{data.wantToTalk}"
                 app:layout_constraintStart_toEndOf="@+id/share_talk_switch"
                 app:layout_constraintTop_toTopOf="@+id/share_talk_switch"
                 app:layout_constraintBottom_toBottomOf="@+id/share_talk_switch"
@@ -63,12 +65,14 @@
                 android:textOff="@string/to_all"
                 android:textOn="@string/something"
                 android:layout_marginTop="40dp"
+                android:checked="@={data.shareHereMode}"
                 app:layout_constraintTop_toBottomOf="@+id/share_talk_switch"
                 app:layout_constraintStart_toStartOf="@+id/share_talk_switch"/>
             <EditText
                 android:id="@+id/want_you_to_talk_edit"
                 android:layout_width="wrap_content"
                 android:inputType="text"
+                android:text="@{data.wantYouToTalk}"
                 android:layout_marginTop="40dp"
                 app:layout_constraintTop_toBottomOf="@+id/want_to_talk_edit"
                 app:layout_constraintStart_toStartOf="@+id/want_to_talk_edit"
@@ -81,6 +85,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/talk_theme_form_area"
         android:layout_margin="15dp"
+        android:onClick="@{() -> data.nextUser()}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/next_user"/>

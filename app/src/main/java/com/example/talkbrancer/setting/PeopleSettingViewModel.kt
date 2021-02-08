@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import java.util.*
 
 data class User(
@@ -11,7 +12,7 @@ data class User(
     var name: MutableLiveData<String> = MutableLiveData("")
 ) {}
 
-class PeopleSettingViewModel(application: Application): AndroidViewModel(application) {
+class PeopleSettingViewModel(): ViewModel() {
     var peopleCount: MutableLiveData<Int> = MutableLiveData(0)
     private var _users:MutableLiveData<MutableList<User>> = MutableLiveData()
     private val usersRaw = LinkedList<User>()
