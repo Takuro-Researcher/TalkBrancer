@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,15 +9,63 @@
             type="com.example.talkbrancer.talk_turn.TalkTurnViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="100dp"
+            android:id="@+id/talk_turn_area"
+            android:background="@drawable/shape">
+
+            <TextView
+                android:id="@+id/talk_turn_speaker_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="森田拓朗が"
+                android:textSize="30sp"
+                android:layout_marginTop="40dp" />
+
+            <TextView
+                android:id="@+id/talk_turn_topic_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/talk_turn_speaker_name_text"
+                android:text="死後の世界、もしくは生まれる理由"
+                android:layout_marginTop="20dp"
+                android:textSize="25sp"
+                android:alpha="0.0"
+                android:padding="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/talk_turn_with_someone_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/want_to_talk_turn"
+                android:textSize="25sp"
+                android:padding="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/talk_turn_topic_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/next_user_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:text="ここは遊ぶ画面です" />
-
-    </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/talk_turn_area"
+            android:layout_margin="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/next_user" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

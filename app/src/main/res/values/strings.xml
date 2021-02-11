@@ -46,5 +46,8 @@
     <string name="next_user">次の人へ</string>
     <string name="next_game">次のゲームへ</string>
     <string name="san">さん</string>
+    <string name="want_to_talk_turn">について語りたい！</string>
+    <string name="want_to_talk_with_our_turn">についてみんなで語り合いたい！</string>
+    <string name="someone_talk_turn">について話す！</string>
 
 </resources>
