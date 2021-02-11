@@ -1,5 +1,7 @@
 package com.example.talkbrancer.talk_turn
 
+import android.animation.Animator
+import android.animation.AnimatorInflater
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -12,10 +14,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.talkbrancer.R
 import com.example.talkbrancer.databinding.FragmentTalkTurnBinding
+import kotlinx.android.synthetic.main.fragment_talk_turn.*
 
 class TalkTurnFragment : Fragment() {
     private val viewModelTalkTurn: TalkTurnViewModel by viewModels()
     private lateinit var binding: FragmentTalkTurnBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +40,16 @@ class TalkTurnFragment : Fragment() {
         binding.data = viewModelTalkTurn
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val set: Animator =
+            AnimatorInflater.loadAnimator(requireContext(), R.animator.animator_sample)
+        set.setTarget(talk_turn_speaker_name_text)
+        set.start()
+
+
         val builder: AlertDialog.Builder? = requireActivity()?.let {
             AlertDialog.Builder(it)
         }
@@ -45,7 +57,8 @@ class TalkTurnFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             builder?.setTitle("トークセッション終了")?.setTitle("参加者設定まで戻ります。\nよろしいですか？")
             builder?.apply {
-                setPositiveButton("OK",
+                setPositiveButton(
+                    "OK",
                     DialogInterface.OnClickListener { dialog, id ->
                         findNavController().navigate(R.id.action_TalkTurnFragment_to_PeopleSettingFragment)
                     })
