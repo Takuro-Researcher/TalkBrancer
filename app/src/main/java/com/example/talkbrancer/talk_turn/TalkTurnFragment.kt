@@ -2,6 +2,7 @@ package com.example.talkbrancer.talk_turn
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
+import android.animation.AnimatorSet
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -38,17 +39,25 @@ class TalkTurnFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.data = viewModelTalkTurn
+        val fadeInSet: Animator =
+            AnimatorInflater.loadAnimator(requireContext(), R.animator.animator_fade_in_right)
+                .apply {
+                    this.setTarget(talk_turn_speaker_name_text)
+                }
+        val fadeInSet2: Animator =
+            AnimatorInflater.loadAnimator(requireContext(), R.animator.animator_fade_in_up).apply {
+                this.setTarget(talk_turn_topic_text)
+            }
+
+        AnimatorSet().apply {
+            play(fadeInSet).before(fadeInSet2)
+            start()
+        }
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val set: Animator =
-            AnimatorInflater.loadAnimator(requireContext(), R.animator.animator_sample)
-        set.setTarget(talk_turn_speaker_name_text)
-        set.start()
-
 
         val builder: AlertDialog.Builder? = requireActivity()?.let {
             AlertDialog.Builder(it)
