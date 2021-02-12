@@ -10,16 +10,18 @@ data class User(
     var name: MutableLiveData<String> = MutableLiveData("")
 ) {}
 
-class PeopleSettingViewModel(): ViewModel() {
+class PeopleSettingViewModel() : ViewModel() {
     var peopleCount: MutableLiveData<Int> = MutableLiveData(0)
-    private var _users:MutableLiveData<MutableList<User>> = MutableLiveData()
+    private var _users: MutableLiveData<MutableList<User>> = MutableLiveData()
     private val usersRaw = LinkedList<User>()
     val users: LiveData<MutableList<User>> = _users
     var id: Long = 0L
+
     init {
         addUsers()
     }
-    fun addUsers(){
+
+    fun addUsers() {
         id += 1
         usersRaw.add(User(id, MutableLiveData("")))
         _users.value = usersRaw

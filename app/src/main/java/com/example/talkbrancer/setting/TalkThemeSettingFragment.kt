@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.talkbrancer.R
 import com.example.talkbrancer.databinding.FragmentTalkThemeSettingBinding
 import kotlinx.android.synthetic.main.fragment_talk_theme_setting.*
+import java.util.*
 
 class TalkThemeSettingFragment : Fragment() {
     private val viewModelPeople: PeopleSettingViewModel by activityViewModels()
@@ -40,7 +41,17 @@ class TalkThemeSettingFragment : Fragment() {
         viewModelTalkTheme.gameStartAction.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 next_user_button.setOnClickListener {
-                    findNavController().navigate(R.id.action_TalkThemeSettingFragment_to_TalkTurnFragment)
+                    viewModelTalkTheme.setSetting()
+                    val bundle = Bundle().apply {
+                        this.putParcelableArrayList(
+                            "SETTING",
+                            ArrayList(viewModelTalkTheme.usersSettingData)
+                        )
+                    }
+                    findNavController().navigate(
+                        R.id.action_TalkThemeSettingFragment_to_TalkTurnFragment,
+                        bundle
+                    )
                 }
             }
         })

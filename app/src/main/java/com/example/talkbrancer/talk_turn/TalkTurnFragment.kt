@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.talkbrancer.R
 import com.example.talkbrancer.databinding.FragmentTalkTurnBinding
+import com.example.talkbrancer.setting.TalkTheme
 import kotlinx.android.synthetic.main.fragment_talk_turn.*
 
 class TalkTurnFragment : Fragment() {
@@ -24,6 +25,8 @@ class TalkTurnFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val num = requireArguments().getParcelableArrayList<TalkTheme>("SETTING")
+        System.out.println(num)
     }
 
     override fun onCreateView(
@@ -39,6 +42,7 @@ class TalkTurnFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.data = viewModelTalkTurn
+
         val fadeInSet: Animator =
             AnimatorInflater.loadAnimator(requireContext(), R.animator.animator_fade_in_right)
                 .apply {

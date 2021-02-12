@@ -1,18 +1,21 @@
 package com.example.talkbrancer.setting
 
+import android.os.Parcelable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class TalkTheme(
-    val user: User,
-    val want_to_talk:Pair<Int, String>,
+    val user_name: String,
+    val want_to_talk: Pair<Int, String>,
     val want_you_to_talk: Pair<Int, String>
-)
+) : Parcelable
 
 class TalkThemeSettingViewModel(user: List<User>): ViewModel() {
     private var nowIndex: Int = 0
     private val userRaw = user
-    private var usersSettingData: MutableList<TalkTheme> = mutableListOf()
+    var usersSettingData: MutableList<TalkTheme> = mutableListOf()
     var userName: MutableLiveData<String> = MutableLiveData()
 
     // 誰かと話したい
@@ -46,22 +49,27 @@ class TalkThemeSettingViewModel(user: List<User>): ViewModel() {
         shareTalkMode.value = true
     }
 
-    fun nextUser(){
-        // 入力フォームからデータを取る
-        val talkMode = if(shareTalkMode.value!!) 0 else 1
-        val hereMode = if(shareHereMode.value!!) 0 else 1
-        val wantToTalkRaw = wantToTalk.value ?: ""
-        val wantYouToTalkRaw = wantYouToTalk.value ?: ""
-        val theme = TalkTheme(
-            userRaw[nowIndex],
-            Pair(talkMode, wantToTalkRaw),
-            Pair(hereMode, wantYouToTalkRaw)
-        )
-        usersSettingData.add(theme)
-        // 次のユーザー用にデータを削除する
+    // フォームから
+    fun nextUser() {
+        setSetting()
         initTheme()
         // 次のユーザーに切り替える
         nowIndex += 1
         userSetting()
+    }
+
+    // フォームからデータを抜き取り、設定を保存する
+    fun setSetting() {
+        // 入力フォームからデータを取る
+        val talkMode = if (shareTalkMode.value!!) 0 else 1
+        val hereMode = if (shareHereMode.value!!) 0 else 1
+        val wantToTalkRaw = wantToTalk.value ?: ""
+        val wantYouToTalkRaw = wantYouToTalk.value ?: ""
+        val theme = TalkTheme(
+            userRaw[nowIndex].name.value!!,
+            Pair(talkMode, wantToTalkRaw),
+            Pair(hereMode, wantYouToTalkRaw)
+        )
+        usersSettingData.add(theme)
     }
 }
