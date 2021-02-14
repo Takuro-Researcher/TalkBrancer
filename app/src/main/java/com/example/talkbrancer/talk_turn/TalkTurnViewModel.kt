@@ -3,8 +3,6 @@ package com.example.talkbrancer.talk_turn
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.talkbrancer.setting.TalkTheme
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 // who_flag:0 = 話したい。　who_flag:1 = 聞きたい
 data class TalkSessionSettingData(
@@ -78,7 +76,7 @@ class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel(
         }
     }
 
-    private fun setTalkSessionMain() {
+    fun setTalkSessionMain() {
         var talkSesion = TalkSession("", "")
         // 最大3回計算を行う
         for (i in 0..3) {
@@ -94,41 +92,37 @@ class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel(
     // LiveDataに表示するデータをアルゴリズムに従い返す。
     // TODO 計算部分は別メソッドに書くべきか。。
     private fun decideTalkSession(): TalkSession {
-        val randomIndex = Random.nextInt(0 until talkThemeList.size)
-        val talkingTheme = talkThemeList[randomIndex]
+
+        val talkingTheme = talkThemeList.random()
         var talkSession = TalkSession("", "")
 
         if (talkingTheme.who_flag == 0) {
-            //話したい
-            if (talkingTheme.talkTheme.first == 0) {
-                // みんなと
-                talkSession = talkingTheme.let { TalkSession(it.name, it.talkTheme.second, 1) }
-            } else {
-                // みんなに
-                talkSession = talkingTheme.let { TalkSession(it.name, it.talkTheme.second, 2) }
-            }
+            //話したい　1 ならみんなで　2なら一人に向かって
+            val talkFormat = if (talkingTheme.talkTheme.first == 0) 1 else 2
+            talkSession = talkingTheme.let { TalkSession(it.name, it.talkTheme.second, talkFormat) }
         } else {
-            // 聞きたい
+            var talkingPerson = ""
+            val talkFormat: Int
             if (talkingTheme.talkTheme.first == 0) {
-                // 誰か一人の話を
-                val randomWho = Random.nextInt(0 until userNameList.size)
-                val talkingPerson = userNameList[randomWho]
-                talkSession =
-                    talkingTheme.let { TalkSession(talkingPerson, it.talkTheme.second, 3) }
+                // 誰かの話
+                talkingPerson = userNameList.random()
+                talkFormat = 3
             } else {
                 // みんなの話
-                talkSession = talkingTheme.let { TalkSession("", it.talkTheme.second, 4) }
+                talkFormat = 4
             }
+            talkSession =
+                talkingTheme.let { TalkSession(talkingPerson, it.talkTheme.second, talkFormat) }
         }
         return talkSession
     }
 
     private fun getTalkFormatSubText(talkFormatNum: Int): String {
         when (talkFormatNum) {
-            1 -> return "についてみんなで語り合いたい"
+            1 -> return "について\nみんなで語り合いたい"
             2 -> return "について語りたい"
             3 -> return "について話す"
-            4 -> return "みんなの話が聞きたい"
+            4 -> return "みんなの\n話が聞きたい"
         }
         return ""
     }

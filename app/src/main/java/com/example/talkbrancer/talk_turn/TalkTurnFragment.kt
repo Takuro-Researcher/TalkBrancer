@@ -67,7 +67,7 @@ class TalkTurnFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val builder: AlertDialog.Builder? = requireActivity()?.let {
+        val builder: AlertDialog.Builder = requireActivity().let {
             AlertDialog.Builder(it)
         }
 

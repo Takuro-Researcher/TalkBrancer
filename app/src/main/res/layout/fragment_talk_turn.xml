@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/talk_turn_area"
             android:layout_margin="25dp"
+            android:onClick="@{() -> data.setTalkSessionMain()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/next_user" />
