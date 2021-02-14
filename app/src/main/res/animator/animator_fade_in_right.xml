@@ -4,8 +4,8 @@
         android:interpolator="@android:anim/decelerate_interpolator"
         android:propertyName="translationX"
         android:duration="1000"
-        android:valueFrom="0"
-        android:valueTo="40dp" />
+        android:valueFrom="-40dp"
+        android:valueTo="0dp" />
     <objectAnimator
         android:interpolator="@android:anim/decelerate_interpolator"
         android:propertyName="alpha"
