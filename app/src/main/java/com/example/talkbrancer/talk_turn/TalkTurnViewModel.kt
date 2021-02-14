@@ -7,32 +7,129 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 // who_flag:0 = 話したい。　who_flag:1 = 聞きたい
-data class TalkSessionData(val name: String, val talkTheme: Pair<Int, String>, val who_flag: Int) {}
+data class TalkSessionSettingData(
+    val name: String,
+    val talkTheme: Pair<Int, String>,
+    val who_flag: Int
+) {}
+
+data class TalkSession(
+    val sessionMainPerson: String = "",
+    val talkThemeString: String,
+    val talkFormat: Int = 0
+)
 
 class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel() {
-    val talkThemeList: MutableList<TalkSessionData> = mutableListOf()
+    val talkThemeList: MutableList<TalkSessionSettingData> = mutableListOf()
     val isEndAction: MutableLiveData<Unit> = MutableLiveData()
-    private val alreadyTalkTheme: MutableList<TalkSessionData> = mutableListOf()
+    val nowTalkSession: MutableLiveData<TalkSession> = MutableLiveData()
+    private val alreadyTalkTheme: MutableList<TalkSession> = mutableListOf()
+    private val userNameList: MutableList<String> = mutableListOf()
+
+    // xmlに反映させるLiveData
+    val mainPersonText: MutableLiveData<String> = MutableLiveData()
+    val talkThemeText: MutableLiveData<String> = MutableLiveData()
+    val talkSubText: MutableLiveData<String> = MutableLiveData()
 
     init {
-        emptyRemovingTalkTheme(talkThemeSettingData)
-    }
-
-    private fun emptyRemovingTalkTheme(settingData: ArrayList<TalkTheme>) {
-        settingData.forEach {
-            if (it.want_to_talk.second.isNotEmpty()) {
-                talkThemeList.add(it.let { TalkSessionData(it.user_name, it.want_to_talk, 0) })
-            }
-            if (it.want_you_to_talk.second.isNotEmpty()) {
-                talkThemeList.add(it.let { TalkSessionData(it.user_name, it.want_you_to_talk, 1) })
-            }
-        }
-        if (talkThemeList.size == 0) {
+        val isContinue = initTalkThemeSetting(talkThemeSettingData)
+        if (isContinue) {
+            setTalkSessionMain()
+        } else {
             isEndAction.value = Unit
         }
     }
 
-    private fun decideTalkSession() {
-        val randomIndex = Random.nextInt(0..10)
+    private fun initTalkThemeSetting(settingData: ArrayList<TalkTheme>): Boolean {
+        settingData.forEach {
+            userNameList.add(it.user_name)
+            if (it.want_to_talk.second.isNotEmpty()) {
+                talkThemeList.add(it.let {
+                    TalkSessionSettingData(
+                        it.user_name,
+                        it.want_to_talk,
+                        0
+                    )
+                })
+            }
+            if (it.want_you_to_talk.second.isNotEmpty()) {
+                talkThemeList.add(it.let {
+                    TalkSessionSettingData(
+                        it.user_name,
+                        it.want_you_to_talk,
+                        1
+                    )
+                })
+            }
+        }
+        // このまま設定を続けるべきか
+        if (talkThemeList.size == 0) {
+            return false
+        }
+        return true
+    }
+
+    fun uiTalkSession() {
+        val tmp = nowTalkSession.value
+        tmp?.apply {
+            mainPersonText.value = this.sessionMainPerson
+            talkThemeText.value = this.talkThemeString
+            talkSubText.value = getTalkFormatSubText(this.talkFormat)
+        }
+    }
+
+    private fun setTalkSessionMain() {
+        var talkSesion = TalkSession("", "")
+        // 最大3回計算を行う
+        for (i in 0..3) {
+            talkSesion = decideTalkSession()
+            if (!alreadyTalkTheme.contains(talkSesion)) {
+                break
+            }
+        }
+        alreadyTalkTheme.add(talkSesion)
+        nowTalkSession.value = talkSesion
+    }
+
+    // LiveDataに表示するデータをアルゴリズムに従い返す。
+    // TODO 計算部分は別メソッドに書くべきか。。
+    private fun decideTalkSession(): TalkSession {
+        val randomIndex = Random.nextInt(0 until talkThemeList.size)
+        val talkingTheme = talkThemeList[randomIndex]
+        var talkSession = TalkSession("", "")
+
+        if (talkingTheme.who_flag == 0) {
+            //話したい
+            if (talkingTheme.talkTheme.first == 0) {
+                // みんなと
+                talkSession = talkingTheme.let { TalkSession(it.name, it.talkTheme.second, 1) }
+            } else {
+                // みんなに
+                talkSession = talkingTheme.let { TalkSession(it.name, it.talkTheme.second, 2) }
+            }
+        } else {
+            // 聞きたい
+            if (talkingTheme.talkTheme.first == 0) {
+                // 誰か一人の話を
+                val randomWho = Random.nextInt(0 until userNameList.size)
+                val talkingPerson = userNameList[randomWho]
+                talkSession =
+                    talkingTheme.let { TalkSession(talkingPerson, it.talkTheme.second, 3) }
+            } else {
+                // みんなの話
+                talkSession = talkingTheme.let { TalkSession("", it.talkTheme.second, 4) }
+            }
+        }
+        return talkSession
+    }
+
+    private fun getTalkFormatSubText(talkFormatNum: Int): String {
+        when (talkFormatNum) {
+            1 -> return "についてみんなで語り合いたい"
+            2 -> return "について語りたい"
+            3 -> return "について話す"
+            4 -> return "みんなの話が聞きたい"
+        }
+        return ""
     }
 }

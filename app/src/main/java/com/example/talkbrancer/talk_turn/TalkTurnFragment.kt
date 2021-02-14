@@ -28,12 +28,11 @@ class TalkTurnFragment : Fragment() {
         )
     }
     private lateinit var binding: FragmentTalkTurnBinding
+    private val startAnimationSet: AnimatorSet = AnimatorSet()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val num = requireArguments().getParcelableArrayList<TalkTheme>("SETTING")
-
     }
 
     override fun onCreateView(
@@ -61,10 +60,7 @@ class TalkTurnFragment : Fragment() {
                 this.setTarget(talk_turn_topic_text)
             }
 
-        AnimatorSet().apply {
-            play(fadeInSet).before(fadeInSet2)
-            start()
-        }
+        startAnimationSet.play(fadeInSet).before(fadeInSet2)
     }
 
 
@@ -75,16 +71,21 @@ class TalkTurnFragment : Fragment() {
             AlertDialog.Builder(it)
         }
 
+        viewModelTalkTurn.nowTalkSession.observe(viewLifecycleOwner, Observer {
+            viewModelTalkTurn.uiTalkSession()
+            startAnimationSet.start()
+        })
+
         viewModelTalkTurn.isEndAction.observe(viewLifecycleOwner, Observer {
             builder?.setTitle("誰も話したいことないんだって")?.setMessage("参加者設定まで戻ります")
             builder?.apply {
                 setPositiveButton(
                     "OK",
-                    DialogInterface.OnClickListener { dialog, id ->
+                    DialogInterface.OnClickListener { _, _ ->
                         findNavController().navigate(R.id.action_TalkTurnFragment_to_PeopleSettingFragment)
                     })
                 setNegativeButton("NO",
-                    DialogInterface.OnClickListener { dialog, id -> })
+                    DialogInterface.OnClickListener { _, _ -> })
             }
             val dialog: AlertDialog? = builder?.create()
             dialog?.show()
@@ -95,13 +96,11 @@ class TalkTurnFragment : Fragment() {
             builder?.apply {
                 setPositiveButton(
                     "OK",
-                    DialogInterface.OnClickListener { dialog, id ->
+                    DialogInterface.OnClickListener { _, _ ->
                         findNavController().navigate(R.id.action_TalkTurnFragment_to_PeopleSettingFragment)
                     })
                 setNegativeButton("NO",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        // User cancelled the dialog
-                    })
+                    DialogInterface.OnClickListener { _, _ -> })
             }
             val dialog: AlertDialog? = builder?.create()
             dialog?.show()
