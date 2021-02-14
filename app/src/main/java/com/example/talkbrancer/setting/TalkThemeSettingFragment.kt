@@ -18,7 +18,11 @@ import java.util.*
 
 class TalkThemeSettingFragment : Fragment() {
     private val viewModelPeople: PeopleSettingViewModel by activityViewModels()
-    private val viewModelTalkTheme: TalkThemeSettingViewModel by viewModels { TalkThemeSettingViewModelFactory(users = viewModelPeople.users.value?.toList()) }
+    private val viewModelTalkTheme: TalkThemeSettingViewModel by viewModels {
+        TalkThemeSettingViewModelFactory(
+            users = viewModelPeople.users.value?.toList()
+        )
+    }
     private lateinit var binding: FragmentTalkThemeSettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +38,7 @@ class TalkThemeSettingFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 

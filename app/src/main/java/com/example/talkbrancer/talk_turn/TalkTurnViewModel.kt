@@ -1,6 +1,27 @@
 package com.example.talkbrancer.talk_turn
 
 import androidx.lifecycle.ViewModel
+import com.example.talkbrancer.setting.TalkTheme
 
-class TalkTurnViewModel() : ViewModel() {
+// who_flag:0 = 話したい。　who_flag:1 = 聞きたい
+data class TalkSessionData(val name: String, val talkTheme: Pair<Int, String>, val who_flag: Int) {}
+
+class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel() {
+    val talkThemeList: MutableList<TalkSessionData> = mutableListOf()
+
+    init {
+        emptyRemovingTalkTheme(talkThemeSettingData)
+        System.out.println(talkThemeList)
+    }
+
+    private fun emptyRemovingTalkTheme(settingData: ArrayList<TalkTheme>) {
+        settingData.forEach {
+            if (it.want_to_talk.second.isNotEmpty()) {
+                talkThemeList.add(it.let { TalkSessionData(it.user_name, it.want_to_talk, 0) })
+            }
+            if (it.want_you_to_talk.second.isNotEmpty()) {
+                talkThemeList.add(it.let { TalkSessionData(it.user_name, it.want_you_to_talk, 1) })
+            }
+        }
+    }
 }

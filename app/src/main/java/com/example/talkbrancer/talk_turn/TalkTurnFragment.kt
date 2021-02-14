@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.talkbrancer.R
 import com.example.talkbrancer.databinding.FragmentTalkTurnBinding
@@ -19,14 +21,19 @@ import com.example.talkbrancer.setting.TalkTheme
 import kotlinx.android.synthetic.main.fragment_talk_turn.*
 
 class TalkTurnFragment : Fragment() {
-    private val viewModelTalkTurn: TalkTurnViewModel by viewModels()
+    private val viewModelTalkTurn: TalkTurnViewModel by viewModels {
+        TalkTurnViewModelFactory(
+            talkThemeDatas = requireArguments().getParcelableArrayList<TalkTheme>("SETTING")
+        )
+    }
     private lateinit var binding: FragmentTalkTurnBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val num = requireArguments().getParcelableArrayList<TalkTheme>("SETTING")
-        System.out.println(num)
+
+
     }
 
     override fun onCreateView(
@@ -85,4 +92,13 @@ class TalkTurnFragment : Fragment() {
         }
     }
 
+}
+
+class TalkTurnViewModelFactory(private val talkThemeDatas: ArrayList<TalkTheme>?) :
+    ViewModelProvider.NewInstanceFactory() {
+
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return talkThemeDatas?.let { TalkTurnViewModel(it) } as T
+    }
 }
