@@ -1,5 +1,6 @@
 package com.example.talkbrancer.talk_turn
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.talkbrancer.setting.TalkTheme
 
@@ -8,10 +9,10 @@ data class TalkSessionData(val name: String, val talkTheme: Pair<Int, String>, v
 
 class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel() {
     val talkThemeList: MutableList<TalkSessionData> = mutableListOf()
+    val isEndAction: MutableLiveData<Unit> = MutableLiveData()
 
     init {
         emptyRemovingTalkTheme(talkThemeSettingData)
-        System.out.println(talkThemeList)
     }
 
     private fun emptyRemovingTalkTheme(settingData: ArrayList<TalkTheme>) {
@@ -22,6 +23,9 @@ class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel(
             if (it.want_you_to_talk.second.isNotEmpty()) {
                 talkThemeList.add(it.let { TalkSessionData(it.user_name, it.want_you_to_talk, 1) })
             }
+        }
+        if (talkThemeList.size == 0) {
+            isEndAction.value = Unit
         }
     }
 }

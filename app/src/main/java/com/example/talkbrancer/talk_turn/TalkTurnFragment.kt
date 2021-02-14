@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -33,7 +34,6 @@ class TalkTurnFragment : Fragment() {
         super.onCreate(savedInstanceState)
         val num = requireArguments().getParcelableArrayList<TalkTheme>("SETTING")
 
-
     }
 
     override fun onCreateView(
@@ -49,6 +49,7 @@ class TalkTurnFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.data = viewModelTalkTurn
+
 
         val fadeInSet: Animator =
             AnimatorInflater.loadAnimator(requireContext(), R.animator.animator_fade_in_right)
@@ -73,9 +74,24 @@ class TalkTurnFragment : Fragment() {
         val builder: AlertDialog.Builder? = requireActivity()?.let {
             AlertDialog.Builder(it)
         }
+
+        viewModelTalkTurn.isEndAction.observe(viewLifecycleOwner, Observer {
+            builder?.setTitle("誰も話したいことないんだって")?.setMessage("参加者設定まで戻ります")
+            builder?.apply {
+                setPositiveButton(
+                    "OK",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        findNavController().navigate(R.id.action_TalkTurnFragment_to_PeopleSettingFragment)
+                    })
+                setNegativeButton("NO",
+                    DialogInterface.OnClickListener { dialog, id -> })
+            }
+            val dialog: AlertDialog? = builder?.create()
+            dialog?.show()
+        })
         // addCallbackはktxで提供されている拡張関数
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            builder?.setTitle("トークセッション終了")?.setTitle("参加者設定まで戻ります。\nよろしいですか？")
+            builder?.setTitle("トークセッション終了")?.setMessage("参加者設定まで戻ります。\nよろしいですか？")
             builder?.apply {
                 setPositiveButton(
                     "OK",
