@@ -29,16 +29,16 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="森田拓朗が"
+                android:text="@{data.mainPersonText}"
                 android:textSize="30sp"
-                android:layout_marginTop="40dp" />
+                android:layout_margin="40dp" />
 
             <TextView
                 android:id="@+id/talk_turn_topic_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/talk_turn_speaker_name_text"
-                android:text="死後の世界、もしくは生まれる理由"
+                android:text="@{data.talkThemeText}"
                 android:layout_marginTop="20dp"
                 android:textSize="25sp"
                 android:alpha="0.0"
@@ -50,9 +50,9 @@
                 android:id="@+id/talk_turn_with_someone_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/want_to_talk_turn"
+                android:text="@{data.talkSubText}"
                 android:textSize="25sp"
-                android:padding="40dp"
+                android:layout_margin="40dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/talk_turn_topic_text" />
 
@@ -64,6 +64,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/talk_turn_area"
             android:layout_margin="25dp"
+            android:onClick="@{() -> data.setTalkSessionMain()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/next_user" />
