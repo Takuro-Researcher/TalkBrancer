@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -65,6 +66,9 @@ class PeopleSettingFragment : Fragment() {
                     Snackbar.make(view, "名前は重複しないようにお願いします", Snackbar.LENGTH_SHORT).show()
                 }
             }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            findNavController().navigate(R.id.action_PeopleSettingFragment_to_TitleFragment)
         }
     }
 

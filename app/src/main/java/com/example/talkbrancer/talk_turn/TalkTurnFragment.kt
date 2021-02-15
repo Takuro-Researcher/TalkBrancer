@@ -77,8 +77,8 @@ class TalkTurnFragment : Fragment() {
         })
 
         viewModelTalkTurn.isEndAction.observe(viewLifecycleOwner, Observer {
-            builder?.setTitle("誰も話したいことないんだって")?.setMessage("参加者設定まで戻ります")
-            builder?.apply {
+            builder.setTitle("誰も話したいことないんだって")?.setMessage("参加者設定まで戻ります")
+            builder.apply {
                 setPositiveButton(
                     "OK",
                     DialogInterface.OnClickListener { _, _ ->
@@ -87,13 +87,12 @@ class TalkTurnFragment : Fragment() {
                 setNegativeButton("NO",
                     DialogInterface.OnClickListener { _, _ -> })
             }
-            val dialog: AlertDialog? = builder?.create()
-            dialog?.show()
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         })
-        // addCallbackはktxで提供されている拡張関数
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            builder?.setTitle("トークセッション終了")?.setMessage("参加者設定まで戻ります。\nよろしいですか？")
-            builder?.apply {
+            builder.setTitle("トークセッション終了")?.setMessage("参加者設定まで戻ります。\nよろしいですか？")
+            builder.apply {
                 setPositiveButton(
                     "OK",
                     DialogInterface.OnClickListener { _, _ ->

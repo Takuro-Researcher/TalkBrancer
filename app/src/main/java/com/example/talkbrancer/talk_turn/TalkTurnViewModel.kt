@@ -70,7 +70,7 @@ class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel(
     fun uiTalkSession() {
         val tmp = nowTalkSession.value
         tmp?.apply {
-            mainPersonText.value = this.sessionMainPerson
+            mainPersonText.value = this.sessionMainPerson + "　が"
             talkThemeText.value = this.talkThemeString
             talkSubText.value = getTalkFormatSubText(this.talkFormat)
         }
@@ -95,7 +95,6 @@ class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel(
 
         val talkingTheme = talkThemeList.random()
         var talkSession = TalkSession("", "")
-
         if (talkingTheme.who_flag == 0) {
             //話したい　1 ならみんなで　2なら一人に向かって
             val talkFormat = if (talkingTheme.talkTheme.first == 0) 1 else 2
@@ -104,8 +103,9 @@ class TalkTurnViewModel(talkThemeSettingData: ArrayList<TalkTheme>) : ViewModel(
             var talkingPerson = ""
             val talkFormat: Int
             if (talkingTheme.talkTheme.first == 0) {
-                // 誰かの話
-                talkingPerson = userNameList.random()
+                val tmp = userNameList.toMutableList()
+                tmp.remove(talkingTheme.name)
+                talkingPerson = tmp.random()
                 talkFormat = 3
             } else {
                 // みんなの話
